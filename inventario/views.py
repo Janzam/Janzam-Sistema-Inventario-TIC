@@ -1,5 +1,3 @@
-# C:\Inventario_Tic\backend\inventario\views.py
-
 import pandas as pd
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -9,8 +7,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-
-# Importa tus modelos y serializadores
 from .models import Equipo
 from .serializers import EquipoSerializer
 
@@ -20,11 +16,9 @@ class EquipoViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Filtra para que el usuario solo vea sus propios equipos
         return Equipo.objects.filter(creado_por=self.request.user)
 
     def perform_create(self, serializer):
-        # Asigna el usuario logueado automáticamente
         serializer.save(creado_por=self.request.user)
 
     @action(detail=False, methods=['get'])

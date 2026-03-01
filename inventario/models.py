@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 
 class Equipo(models.Model):
-    # Relación con el usuario para privacidad
     creado_por = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 
