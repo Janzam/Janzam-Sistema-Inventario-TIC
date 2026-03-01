@@ -1,0 +1,2 @@
+# Inventario-TIC
+django + react
